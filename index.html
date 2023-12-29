@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/icons-svg.css">
+    <title>To Do</title>
+</head>
+<body>
+<div class="todo-app">
+    <div class="todo-header">
+        <input type="text" name="search" class="todo-search-input" value="" placeholder="Поиск">
+        <div class="todo-header_profile">
+            <i class="icon profile-svg"></i>
+        </div>
+    </div>
+    <div class="todo-page">
+        <div class="todo-sidebar">
+            <button class="todo-button" id="todo-button_today">Сегодня</button>
+            <button class="todo-button" id="todo-button_week">На неделю</button>
+            <div class="todo-date">
+                <h4 class="todo-date_title">Выбор дат:</h4>
+                <div class="todo-datepicker_wrapper">
+                    <p>От:</p><input type="text" id="from" name="from">
+                </div>
+                <div class="todo-datepicker_wrapper">
+                    <p>До:</p><input type="text" id="to" name="to">
+                </div>
+                <div class="todo-checkbox">
+                    <input type="checkbox" name="task-status-filter" id="task-status-filter">
+                    <p>Только невыполненные</p>
+                </div>
+            </div>
+        </div>
+        <div class="todo-content">
+            <div class="todo-tasks-wrapper">
+            </div>
+        </div>
+    </div>
+    <div id="task-dialog" class="fade-in">
+
+    </div>
+</div>
+
+<script src="js/jquery/jquery.js"></script>
+<script src="js/jquery/jquery-ui.min.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/api.js"></script>
+<script src="js/datepicker.js"></script>
+<script src="js/task-dialog.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
