@@ -11,6 +11,7 @@ const app = new (function () {
         $("#todo-button_today").click(function () {
             datepicker.from.datepicker("setDate", new Date());
             datepicker.to.datepicker("setDate", new Date());
+            console.log(datepicker.from.datepicker("setDate", new Date()))
             datepicker.fetchTasks();
         });
         $("#todo-button_week").click(function () {

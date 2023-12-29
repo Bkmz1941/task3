@@ -11,7 +11,6 @@ const datepicker = new (function Datepicker() {
             })
             .datepicker("setDate", new Date())
             .on("change", function () {
-                datepicker.to.datepicker("option", "minDate", datepicker.getDate(this));
                 datepicker.fetchTasks();
             });
         this.to = $("#to")
@@ -21,11 +20,13 @@ const datepicker = new (function Datepicker() {
             })
             .datepicker("setDate", this.defaultOffsetDay)
             .on("change", function () {
-                datepicker.from.datepicker("option", "maxDate", datepicker.getDate(this));
                 datepicker.fetchTasks();
             });
     }
     this.fetchTasks = function () {
+        if (tasks.filters.search.length > 0) {
+            return;
+        }
         let dateFrom = new Date(this.getDate(this.from[0]));
         let dateTo = new Date(this.getDate(this.to[0]));
 
