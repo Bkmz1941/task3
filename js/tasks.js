@@ -77,6 +77,8 @@ const tasks = new (function Tasks() {
             this.drawTaskList();
             if (this.list.length > this.pagination.items) {
                 this.drawPagination();
+            } else {
+                this.removePagination();
             }
         } else {
             this.drawEmptyState();
@@ -113,8 +115,11 @@ const tasks = new (function Tasks() {
     this.updatePaginationText = function () {
         $("#tasks-pagination_text").text(`${this.pagination.page} из ${Math.ceil(this.pagination.total / this.pagination.items)}`);
     }
-    this.drawPagination = function () {
+    this.removePagination = function () {
         $(".todo-content").find('.tasks-pagination').remove();
+    }
+    this.drawPagination = function () {
+        this.removePagination();
         const taskElement = `
             <div class="tasks-pagination">
                 <button class="tasks-pagination_button" id="tasks-pagination_button_back" onclick="tasks.paginationBack()">Назад</button>
