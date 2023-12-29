@@ -16,6 +16,7 @@ const taskDialog = new (function TaskDialog() {
         $("#task-dialog").empty();
     }
     this.open = function (taskId) {
+        this.clear();
         const task = tasks.list.find(el => el.id === taskId);
         this.dialogEl.dialog("open");
         this.dialogEl.dialog('option', 'title', task.name);
