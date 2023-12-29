@@ -278,3 +278,18 @@ button:hover {
     width: 100px;
     cursor: pointer;
 }
+#todo-button_date-sort {
+    margin: 0;
+}
+.task-sort_date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+.task-sort_date i {
+    width: 20px;
+    height: 20px;
+}

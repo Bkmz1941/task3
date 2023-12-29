@@ -1,5 +1,6 @@
 const tasks = new (function Tasks() {
     this.list = [];
+    this.sortListASC = true;
     this.filters = {
         statusActive: true,
         search: ''
@@ -21,11 +22,58 @@ const tasks = new (function Tasks() {
                 console.log(error)
             })
     }
+    this.showSortButton = function () {
+        this.hideSortButton();
+        const element = `
+            <div class="task-sort_date" onclick="tasks.resortList()">
+                <p id="todo-button_date-sort">Сортировка по датe</p>
+                <i class="icon arrow-top-svg"></i>
+            </div>
+        `;
+        $(".todo-content").prepend(element);
+    }
+    this.hideSortButton = function () {
+        $(".todo-content").find('.task-sort_date').remove();
+    }
+    this.resortList = function () {
+        this.sortListASC = !this.sortListASC;
+        this.sortList();
+        this.pagination.page = 1;
+        this.drawTaskList();
+        if (this.list.length > this.pagination.items) {
+            this.drawPagination();
+        }
+        this.changeSortIcon();
+    }
+    this.changeSortIcon = function () {
+        if (this.sortListASC) {
+            $(".task-sort_date").find('.icon')[0].classList.remove('arrow-down-svg');
+            $(".task-sort_date").find('.icon')[0].classList.add('arrow-top-svg');
+        } else {
+            $(".task-sort_date").find('.icon')[0].classList.remove('arrow-top-svg');
+            $(".task-sort_date").find('.icon')[0].classList.add('arrow-down-svg');
+        }
+    }
+    this.sortList = function () {
+        if (this.sortListASC) {
+            this.list.sort(function(a,b){
+                return new Date(a.date) - new Date(b.date);
+            });
+        } else {
+            this.list.sort(function(a,b){
+                return new Date(b.date) - new Date(a.date);
+            });
+        }
+    }
     this.setList = function (tasks) {
+        this.sortListASC = true;
+        this.hideSortButton();
         this.list = tasks;
+        this.sortList();
         this.resetPagination();
         if (this.list.length > 0) {
             this.pagination.total = tasks.length;
+            this.showSortButton();
             this.drawTaskList();
             if (this.list.length > this.pagination.items) {
                 this.drawPagination();

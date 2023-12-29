@@ -8,7 +8,6 @@ const app = new (function () {
             tasks.filters.statusActive = !this.checked;
             datepicker.fetchTasks();
         });
-
         $("#todo-button_today").click(function () {
             datepicker.from.datepicker("setDate", new Date());
             datepicker.to.datepicker("setDate", new Date());
